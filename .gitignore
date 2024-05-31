@@ -1,0 +1,6 @@
+/.vscode/
+/nbproject/private/
+/build/
+/dist/
+/.env
+/plugins/
