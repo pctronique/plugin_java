@@ -24,15 +24,15 @@ public class Main_plugin {
         this.path = "./plugins/";
     }
     
-    public void loadPlugins() {
-        this.loadPlugins((File)null);
+    public Main_plugin loadPlugins() {
+        return this.loadPlugins((File)null);
     }
     
-    public void loadPlugins(String file) {
-        this.loadPlugins(new File(file));
+    public Main_plugin loadPlugins(String file) {
+        return this.loadPlugins(new File(file));
     }
     
-    public void loadPlugins(File file) {
+    public Main_plugin loadPlugins(File file) {
         File folderplugin = new File(LocationJarFile.getPath(), this.path);
         if(file != null) {
             folderplugin = file;
@@ -56,6 +56,7 @@ public class Main_plugin {
                 }
             }
         }
+        return this;
     }
     
     public List<AddPluginInterface> getPlugins(){
