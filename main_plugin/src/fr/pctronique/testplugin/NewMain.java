@@ -18,6 +18,7 @@ public class NewMain {
      */
     public static void main(String[] args) {
         Main_plugin main_plugin = new Main_plugin();
+        main_plugin.loadPlugins();
         for (AddPluginInterface plugin : main_plugin.getPlugins()) {
             System.out.println(plugin.getName() + " : " + plugin.getMessage());
         }

@@ -22,7 +22,21 @@ public class Main_plugin {
     public Main_plugin() {
         this.all_plugin = new ArrayList<>();
         this.path = "./plugins/";
+    }
+    
+    public void loadPlugins() {
+        this.loadPlugins((File)null);
+    }
+    
+    public void loadPlugins(String file) {
+        this.loadPlugins(new File(file));
+    }
+    
+    public void loadPlugins(File file) {
         File folderplugin = new File(LocationJarFile.getPath(), this.path);
+        if(file != null) {
+            folderplugin = file;
+        }
         if(folderplugin.exists()) {
             for (File listFile : folderplugin.listFiles()) {
                 File plibobj = Dlfcn.dlopen(listFile);
