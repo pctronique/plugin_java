@@ -4,3 +4,10 @@
 /dist/
 /.env
 /plugins/
+/project/.vscode/
+/project/nbproject/private/
+/project/build/
+/project/dist/
+/project/.env
+/project/plugins/
+/jvm
