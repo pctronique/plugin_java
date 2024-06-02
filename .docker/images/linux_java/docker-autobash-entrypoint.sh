@@ -15,7 +15,7 @@ then
     VALUE_JAVA_VERSION=21
 fi
 
-ln -s /usr/lib/jvm/java-${VALUE_JAVA_VERSION}-openjdk-amd64/ /jvm
+cp -r /usr/lib/jvm/java-${VALUE_JAVA_VERSION}-openjdk-amd64/ /jvm
 
 touch ${GCC_FOLDER_LOG}/error.log
 service startautobash start && tail -F ${GCC_FOLDER_LOG}/error.log &
