@@ -4,8 +4,7 @@
  */
 package fr.pctronique.testplugin;
 
-import fr.pctronique.plugin.main.AddPluginInterface;
-import fr.pctronique.plugin.main.Main_plugin;
+import fr.pctronique.pctrplugin.main.PctrPlugin;
 
 /**
  *
@@ -17,10 +16,11 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Main_plugin main_plugin = new Main_plugin();
-        main_plugin.loadPlugins();
-        for (AddPluginInterface plugin : main_plugin.getPlugins()) {
-            System.out.println(plugin.getName() + " : " + plugin.getMessage());
+        PctrPlugin pctrPlugin = new PctrPlugin("AddPluginInterface");
+        pctrPlugin.loadPlugins();
+        for (Object plugin : pctrPlugin.getPlugins()) {
+            AddPluginInterface addPluginInterface = (AddPluginInterface)plugin;
+            System.out.println(addPluginInterface.getName() + " : " + addPluginInterface.getMessage());
         }
     }
     

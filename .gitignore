@@ -14,3 +14,6 @@
 /jvm
 /.dockertmp
 /tmp
+/PctrPlugin/nbproject/private/
+/PctrPlugin/dist/
+/PctrPlugin/build/

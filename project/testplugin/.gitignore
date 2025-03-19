@@ -1,0 +1,5 @@
+/.vscode/
+/nbproject/private/
+/build/
+/dist/
+/lib/pctrplugin.jar

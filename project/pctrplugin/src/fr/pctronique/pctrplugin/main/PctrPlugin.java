@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.pctronique.plugin.main;
+package fr.pctronique.pctrplugin.main;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,25 +14,27 @@ import java.util.logging.Logger;
  *
  * @author pctronique
  */
-public class Main_plugin {
+public class PctrPlugin {
     
-    private final List<AddPluginInterface> all_plugin;
+    private final List<Object> all_plugin;
     private final String path;
+    private final String nameInterf;
 
-    public Main_plugin() {
+    public PctrPlugin(String nameInterf) {
         this.all_plugin = new ArrayList<>();
+        this.nameInterf = nameInterf;
         this.path = "./plugins/";
     }
     
-    public Main_plugin loadPlugins() {
+    public PctrPlugin loadPlugins() {
         return this.loadPlugins((File)null);
     }
     
-    public Main_plugin loadPlugins(String file) {
+    public PctrPlugin loadPlugins(String file) {
         return this.loadPlugins(new File(file));
     }
     
-    public Main_plugin loadPlugins(File file) {
+    public PctrPlugin loadPlugins(File file) {
         File folderplugin = new File(LocationJarFile.getPath(), this.path);
         if(file != null) {
             folderplugin = file;
@@ -44,14 +46,14 @@ public class Main_plugin {
                     System.err.println("Error loading the library : " + listFile.getAbsolutePath());
                 } else {
                     try {
-                        AddPluginInterface psqr = (AddPluginInterface)Dlfcn.dlsym(plibobj, "AddPluginInterface");
+                        Object psqr = (Object)Dlfcn.dlsym(plibobj, this.nameInterf);
                         if (psqr == null) {
                             System.err.println("Error accessing the symbol : " + listFile.getAbsolutePath());
                         } else {
                             all_plugin.add(psqr);
                         }
                     } catch (Exception ex) {
-                        Logger.getLogger(Main_plugin.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PctrPlugin.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -59,7 +61,7 @@ public class Main_plugin {
         return this;
     }
     
-    public List<AddPluginInterface> getPlugins(){
+    public List<Object> getPlugins(){
         return all_plugin;
     }
     

@@ -4,7 +4,7 @@
  */
 package fr.pctronique.plugins.plugin2;
 
-import fr.pctronique.plugin.main.AddPluginInterface;
+import fr.pctronique.testplugin.AddPluginInterface;
 
 /**
  *

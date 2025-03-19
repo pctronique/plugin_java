@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package fr.pctronique.plugin.main;
+package fr.pctronique.pctrplugin.main;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Enumeration;
@@ -49,7 +50,7 @@ public class Dlfcn {
         }
         String tmp;
         Enumeration enumeration;
-        Class tmpClass;
+        Class<?> tmpClass;
         URLClassLoader loader;
         
         URL u = fileJar.toURI().toURL();
@@ -72,12 +73,14 @@ public class Dlfcn {
 
                     tmp = tmp.substring(0, tmp.length() - 6);
                     tmp = tmp.replaceAll("/", ".");
-
+                    
                     tmpClass = Class.forName(tmp, true, loader);
+                    Class[] types = tmpClass.getClasses();
+                    Constructor<?> cons = tmpClass.getConstructor(types);
 
                     for (Class intf : tmpClass.getInterfaces()) {
                         if (intf.getSimpleName().equals(name)) {
-                            return tmpClass.getConstructor().newInstance();
+                            return cons.newInstance();
                         }
                     }
 

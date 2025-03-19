@@ -1,11 +1,11 @@
+#!/bin/bash
+
 #/////////////////////////////////////
 #//    DEVELOPPEUR : PCTRONIQUE     //
 #/////////////////////////////////////
 
-#!/bin/sh
-
 rm -rf dist
-mkdir dist
+#mkdir dist
 rm -rf build
 mkdir build
 rm -rf tmp

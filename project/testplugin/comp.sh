@@ -21,7 +21,7 @@ then
     JAVA_FOLDER_PROJECT=${0%/*}/..
 fi
 
-JAVA_FOLDER_PROJECT=${JAVA_FOLDER_PROJECT}/Plugin3
+JAVA_FOLDER_PROJECT=${JAVA_FOLDER_PROJECT}/testplugin
 
 if [ -z ${MANI_FOLDER} ]
 then
@@ -39,9 +39,27 @@ LIST_ALL_JAVA=$(echo ${LIST_ALL_JAVA})
 
 IFS=' ' read -r -a arrayJava <<< "${LIST_ALL_JAVA}"
 
+if [ -z ${JAVA_FILE_MAIN} ]
+then
+    for FILE_JAVA in "${arrayJava[@]}"
+    do
+        if grep -q "public static void main(" "${FILE_JAVA}"; then
+            FILE_JAVA=${FILE_JAVA/src\//}
+            FILE_JAVA=${FILE_JAVA/\.java/}
+            FILE_JAVA=$(sed "s/\//./gm" <<< "${FILE_JAVA}")
+            JAVA_FILE_MAIN=${FILE_JAVA}
+        fi
+    done
+fi
+
 echo "Manifest-Version: 1.0" > ${MANI_FOLDER}/MANIFEST.MF
 echo "Created-By: ${VALUE_JAVA_VERSION} (Ubuntu)" >> ${MANI_FOLDER}/MANIFEST.MF
 echo "Class-Path: ${LIST_LIB_JAR}" >> ${MANI_FOLDER}/MANIFEST.MF
+
+if [ ! -z ${JAVA_FILE_MAIN} ]
+then
+    echo "Main-Class: ${JAVA_FILE_MAIN}" >> ${MANI_FOLDER}/MANIFEST.MF
+fi
 
 cd build
 cmake ../
