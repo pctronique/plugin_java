@@ -4,7 +4,7 @@
  */
 package fr.pctronique.testplugin;
 
-import fr.pctronique.pctrplugin.main.PctrPlugin;
+import fr.pctronique.pctrplugin.PctrPlugin;
 
 /**
  *
