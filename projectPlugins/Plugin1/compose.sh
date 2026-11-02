@@ -1,0 +1,10 @@
+#/////////////////////////////////////
+#//    DEVELOPPEUR : PCTRONIQUE     //
+#/////////////////////////////////////
+
+#!/bin/sh
+
+folder=`pwd`
+cd $folder/bin_def
+
+./comp.sh
