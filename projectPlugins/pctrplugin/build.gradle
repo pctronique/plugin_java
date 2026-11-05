@@ -54,7 +54,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation libs.guava
-    implementation project(':pctrplugin')
+    //implementation project(':pctrplugin')
     //implementation "com.googlecode.json-simple:json-simple:$jsonVersion"
     //implementation "org.ini4j:ini4j:$ini4jVersion"
 }
